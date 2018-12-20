@@ -1,7 +1,8 @@
 <project name="SRH imaging" default="build" basedir="." xmlns:if="ant:if" xmlns:unless="ant:unless">
 
  <target name="build">
-  <exec executable="pytest" failonerror="true">
+  <exec executable="py.test" failonerror="true">
+   <arg line="--cov --cov-report html"/>
   </exec>
  </target>
 
