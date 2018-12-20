@@ -2,7 +2,7 @@
 
  <target name="build">
   <exec executable="py.test" failonerror="true">
-   <arg line="--cov --cov-report html"/>
+   <arg line="--cov --cov-report html --cov-report xml"/>
   </exec>
  </target>
 
