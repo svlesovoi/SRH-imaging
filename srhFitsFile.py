@@ -213,6 +213,12 @@ class SrhFitsFile():
             self.visRcp.real = NP.sin(NP.pi/2*self.visRcp.real);
             self.visLcp.imag = NP.sin(NP.pi/2*self.visLcp.imag);
             self.visRcp.imag = NP.sin(NP.pi/2*self.visRcp.imag);
+            correctedAbsLcp = NP.abs(self.visLcp)
+            correctedAbsLcp = correctedAbsLcp / (1.0 - correctedAbsLcp)
+            self.visLcp = correctedAbsLcp * NP.exp(1j*NP.angle(self.visLcp))
+            correctedAbsRcp = NP.abs(self.visRcp)
+            correctedAbsRcp = correctedAbsRcp / (1.0 - correctedAbsRcp)
+            self.visRcp = correctedAbsRcp * NP.exp(1j*NP.angle(self.visRcp))
 
             self.RAO = BadaryRAO(self.dateObs.split('T')[0])
 
@@ -233,6 +239,12 @@ class SrhFitsFile():
             visRcp.real = NP.sin(NP.pi/2*visRcp.real);
             visLcp.imag = NP.sin(NP.pi/2*visLcp.imag);
             visRcp.imag = NP.sin(NP.pi/2*visRcp.imag);
+            correctedAbsLcp = NP.abs(visLcp)
+            correctedAbsLcp = correctedAbsLcp / (1.0 - correctedAbsLcp)
+            visLcp = correctedAbsLcp * NP.exp(1j*NP.angle(visLcp))
+            correctedAbsRcp = NP.abs(visRcp)
+            correctedAbsRcp = correctedAbsRcp / (1.0 - correctedAbsRcp)
+            visRcp = correctedAbsRcp * NP.exp(1j*NP.angle(visRcp))
 
             self.freqTime = NP.concatenate((self.freqTime, freqTime), axis = 1)
             self.visLcp = NP.concatenate((self.visLcp, visLcp), axis = 1)
